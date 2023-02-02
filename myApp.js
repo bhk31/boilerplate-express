@@ -35,6 +35,11 @@ app.get(
   }
 );
 
+app.use("/:word/echo", (req, res)=>{
+  res.json({echo: req.params.word});
+  
+})
+
 app.use("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
