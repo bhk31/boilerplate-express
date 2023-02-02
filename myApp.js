@@ -2,12 +2,11 @@ require("dotenv").config();
 let bodyParser = require("body-parser");
 let express = require("express");
 
-
 let app = express();
 console.log("Hello World");
 
 app.use("/public", express.static(__dirname + "/public"));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use((req, res, next) => {
@@ -43,8 +42,9 @@ app.use("/:word/echo", (req, res) => {
   res.json({ echo: req.params.word });
 });
 
-app.get("/name", (req, res) => {
-  res.json({ name: `${req.query.first} ${req.query.last}` });
+app.post("/name", (req, res) => {
+  console.log(req);
+  res.json({ name: `${req.body.first} ${req.body.last}` });
 });
 
 app.use("/", (req, res) => {
